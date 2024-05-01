@@ -6,18 +6,21 @@ const pdfJS = pdfjsLib;
 pdfJS.GlobalWorkerOptions.workerSrc =
   window.location.origin + '/pdf.worker.min.mjs';
 
-export async function readPDF(event: React.ChangeEvent<HTMLInputElement>) {
+export async function readPDF(
+  event: React.ChangeEvent<HTMLInputElement>,
+  fn: (value: string) => void,
+) {
   const file = event.target.files?.[0];
   const reader = new FileReader();
-  const content = (reader.onload = async (event) => {
+  reader.onload = async (event) => {
     const arrayBuffer = event.target?.result;
     if (arrayBuffer) {
-      return await parsePDF(arrayBuffer);
+      const content = await parsePDF(arrayBuffer);
+      fn(content);
     }
-  });
+  };
 
   if (file) reader.readAsArrayBuffer(file);
-  return content;
 }
 
 async function parsePDF(doc: string | ArrayBuffer) {
@@ -33,14 +36,14 @@ async function parsePDF(doc: string | ArrayBuffer) {
                 const text = item as TextItem;
                 return text.str;
               })
-              .join('');
+              .join('\n');
           });
         }),
       );
     }
 
     return Promise.all(pagePromises).then((pages) => {
-      const fullText = pages.join('\n');
+      const fullText = pages.join(' ');
       return fullText;
     });
   });
