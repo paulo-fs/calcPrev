@@ -26,12 +26,15 @@ export default defineConfig({
   resolve: {
     alias: {
       src: '/src',
-      app: '/src/app',
+      contexts: '/src/shared/contexts',
+      hooks: '/src/shared/hooks',
+      services: '/src/shared/services',
+      types: '/src/shared/types',
+      utils: '/src/shared/utils',
       router: '/src/Router',
       pages: '/src/view/pages',
       layouts: '/src/view/layouts',
       components: '/src/view/components',
-      utils: '/src/app/utils',
     },
   },
 });
