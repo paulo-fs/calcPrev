@@ -9,6 +9,8 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
   Input,
+  TypographyLead,
+  TypographySmall,
 } from 'components/index';
 import { HeaderNavigation } from '../HeaderNavigation/HeaderNavigation';
 
@@ -35,12 +37,20 @@ export function HeaderMenu() {
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
-            <DropdownMenuLabel>My Account</DropdownMenuLabel>
+            <DropdownMenuLabel>
+              <TypographyLead className="text-base">My Account</TypographyLead>
+            </DropdownMenuLabel>
             <DropdownMenuSeparator />
-            <DropdownMenuItem>Settings</DropdownMenuItem>
-            <DropdownMenuItem>Support</DropdownMenuItem>
+            <DropdownMenuItem>
+              <TypographySmall>Settings</TypographySmall>
+            </DropdownMenuItem>
+            <DropdownMenuItem>
+              <TypographySmall>Support</TypographySmall>
+            </DropdownMenuItem>
             <DropdownMenuSeparator />
-            <DropdownMenuItem>Logout</DropdownMenuItem>
+            <DropdownMenuItem>
+              <TypographySmall>Logout</TypographySmall>
+            </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
       </div>
