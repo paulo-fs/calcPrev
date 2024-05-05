@@ -5,3 +5,4 @@ export * from './Checkbox/Checkbox';
 export * from './DropDownMenu/DropDownMenu';
 export * from './Input/Input';
 export * from './Sheet/Sheet';
+export * from './Typography/Typography';
