@@ -1,18 +1,23 @@
 import { cn } from 'src/shared/utils/cn';
 import { styles as s } from './NavigationItem.styles';
 import { NavigationItemProps } from './NavigationItem.types';
+import { NavLink } from 'react-router-dom';
 
 export function NavigationItem({
   children,
   icon,
   className,
-  isCurrentPage,
+  href,
   ...props
 }: NavigationItemProps) {
   return (
-    <a className={cn(s({ active: isCurrentPage }), className)} {...props}>
-      {icon}
-      {children}
-    </a>
+    <NavLink to={href || ''} end>
+      {({ isActive }) => (
+        <a className={cn(s({ active: isActive }), className)} {...props}>
+          {icon}
+          {children}
+        </a>
+      )}
+    </NavLink>
   );
 }
